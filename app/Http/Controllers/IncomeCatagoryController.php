@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\IncomeCatagory;
 use Carbon\Carbon;
 use session;
@@ -40,7 +41,9 @@ class IncomeCatagoryController extends Controller
 
         ]);
 
-    $slug = 'IC'. Uniqid(20);
+    // $slug = 'IC'. Uniqid(20);
+
+    $slug = str::slug($request['name'], '-');
     $creator = Auth::user()->id;
 
         IncomeCatagory::insert([
